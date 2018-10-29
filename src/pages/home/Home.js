@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import { translate, Interpolate } from 'react-i18next';
+import { noop } from 'utils/noop';
 import 'i18n/i18n';
 
 import styles from './assets/home.scss';
+import Button from 'components/button/Button';
 import Navbar from 'components/navbar/Navbar';
 import Image from 'components/image/Image';
 import HomeSection from './components/HomeSection';
@@ -14,7 +16,7 @@ import ImageContact from './assets/images/contact.svg';
 
 import config from 'config/constants';
 
-const heroImage = require('./assets/images/meeting.svg');
+const heroImage = require('./assets/images/coding-coach-logo.svg');
 
 function Home({ t }) {
   const emailLink = (
@@ -38,7 +40,9 @@ function Home({ t }) {
               <span>{t('home-header-title')}</span>
             </h1>
             <h2 className={styles.heroSubtitle}>{t('home-header-subtitle')}</h2>
-            <button className={styles.callToAction}>{t('home-header-cta')}</button>
+            <Button onClick={noop} className={styles.callToAction}>
+              {t('home-header-cta')}
+            </Button>
           </header>
           <Image className={styles.heroImage} alt={t('home-header-media-alt')} src={heroImage} />
         </div>
