@@ -37,6 +37,7 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-i18next": "^7.12.0",
     "react-scripts": "1.1.5",
     "rewire": "^4.0.1"
@@ -53,6 +54,9 @@
     "precommit": "lint-staged",
     "analyze": "source-map-explorer build/static/js/main.*",
     "storybook": "start-storybook -p 9001 -c .storybook"
+=======
+    "react-scripts": "2.1.1"
+>>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
 =======
     "react-scripts": "2.1.1"
 >>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31

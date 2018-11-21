@@ -18,6 +18,7 @@ import styles from './assets/home.module.scss';
 import config from 'config/constants';
 
 const { EMAIL } = config.contact;
+<<<<<<< HEAD
 
 class Home extends Component {
   state = {
@@ -75,6 +76,35 @@ class Home extends Component {
     </Fragment>
   );
 =======
+=======
+
+class Home extends Component {
+  state = {
+    legal: {
+      page: undefined,
+      show: false,
+    },
+  };
+
+  handleOnClickCTA = () => {
+    document.getElementById('about').scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
+
+  toggleModal = (page) => {
+    this.setState((prevState) => ({
+      legal: {
+        show: !prevState.legal.show,
+        page,
+      },
+    }));
+  };
+
+  render() {
+    const { legal } = this.state;
+
+>>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
     return (
       <Fragment>
         <Navbar />
@@ -130,6 +160,9 @@ class Home extends Component {
       </Fragment>
     );
   }
+<<<<<<< HEAD
+>>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
+=======
 >>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
 }
 

@@ -99,8 +99,12 @@ In order to update your local environment to the latest version on `development`
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 In order to update your local environment to the latest version on `development`, you will have to pull the changes using the `upstream` repository, for example: `git pull upstream development`. This will pull all the new commits from the origin repository to your local environment.
 >>>>>>> 13ee5aa31858c9256fd3043053c23eeb3366cb26
+=======
+In order to update your local environment to the latest version on `develop`, you will have to pull the changes using the `upstream` repository, for example: `git pull upstream develop`. This will pull all the new commits from the origin repository to your local environment.
+>>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
 =======
 In order to update your local environment to the latest version on `develop`, you will have to pull the changes using the `upstream` repository, for example: `git pull upstream develop`. This will pull all the new commits from the origin repository to your local environment.
 >>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
@@ -117,8 +121,13 @@ Let's say you've been working on a feature for a couple days, most likely there 
 
 ```bash
 <<<<<<< HEAD
+<<<<<<< HEAD
 $ git checkout development
 $ git pull upstream development or $git pull
+=======
+$ git checkout develop
+$ git pull upstream develop
+>>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
 =======
 $ git checkout develop
 $ git pull upstream develop
