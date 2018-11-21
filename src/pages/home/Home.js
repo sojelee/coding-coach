@@ -1,53 +1,51 @@
-import React, { Fragment } from 'react';
-import { translate, Interpolate } from 'react-i18next';
-import { noop } from 'utils/noop';
-import 'i18n/i18n';
+import React, { Component, Fragment } from 'react';
+import { Trans, t } from '@lingui/macro';
+import { I18n } from '@lingui/react';
 
-import styles from './assets/home.scss';
-import Button from 'components/button/Button';
 import Navbar from 'components/navbar/Navbar';
 import Image from 'components/image/Image';
+import OverlayCookie from 'components/overlayCookie/OverlayCookie';
+import Footer from 'components/footer/Footer';
+import LegalModal from './components/LegalModal';
+import Hero from './components/Hero';
 import HomeSection from './components/HomeSection';
 import SocialMedia from './components/SocialMedia';
-import Footer from 'components/footer/Footer';
 import ImageAbout from './assets/images/about.svg';
 import ImageMission from './assets/images/mission.svg';
 import ImageContact from './assets/images/contact.svg';
+import styles from './assets/home.module.scss';
 
 import config from 'config/constants';
 
-const heroImage = require('./assets/images/coding-coach-logo.svg');
+const { EMAIL } = config.contact;
 
-function Home({ t }) {
-  const emailLink = (
-    <a target="_blank" href={`mailto:${config.contact.EMAIL}`} className={styles.email}>
-      {config.contact.EMAIL}
-    </a>
-  );
-  const slackOrg = (
-    <a href={config.contact.SLACK_URL} className={styles.slackOrg}>
-      {t('slack-org')}
-    </a>
-  );
+class Home extends Component {
+  state = {
+    legal: {
+      page: undefined,
+      show: false,
+    },
+  };
 
-  return (
-    <Fragment>
-      <Navbar />
-      <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <header className={styles.heroTextWrapper}>
-            <h1 className={styles.heroTitle}>
-              <span>{t('home-header-title')}</span>
-            </h1>
-            <h2 className={styles.heroSubtitle}>{t('home-header-subtitle')}</h2>
-            <Button onClick={noop} className={styles.callToAction}>
-              {t('home-header-cta')}
-            </Button>
-          </header>
-          <Image className={styles.heroImage} alt={t('home-header-media-alt')} src={heroImage} />
-        </div>
-      </section>
+  handleOnClickCTA = () => {
+    document.getElementById('about').scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
 
+  toggleModal = (page) => {
+    this.setState((prevState) => ({
+      legal: {
+        show: !prevState.legal.show,
+        page,
+      },
+    }));
+  };
+
+  render() {
+    const { legal } = this.state;
+
+<<<<<<< HEAD
       <main className={styles.content}>
         <HomeSection
           id="about"
@@ -76,6 +74,63 @@ function Home({ t }) {
       <Footer />
     </Fragment>
   );
+=======
+    return (
+      <Fragment>
+        <Navbar />
+        <Hero onClick={this.handleOnClickCTA} />
+        <I18n>
+          {({ i18n }) => (
+            <main className={styles.content}>
+              <HomeSection
+                id="about"
+                title={i18n._(t`home.about.title`)}
+                text={i18n._(t`home.about.description`)}
+                media={<Image src={ImageAbout} alt={i18n._(t`home.about.img`)} />}
+              />
+              <HomeSection
+                id="mission"
+                title={i18n._(t`home.mission.title`)}
+                text={i18n._(t`home.mission.description`)}
+                media={<Image src={ImageMission} alt={i18n._(t`home.mission.img`)} />}
+              />
+              <HomeSection
+                id="contact"
+                title={i18n._(t`home.contact.title`)}
+                media={<img src={ImageContact} alt={i18n._(t`home.contact.img`)} />}
+              >
+                <p>
+                  <Trans id="home.contact.description">
+                    <a
+                      href={config.contact.SLACK_URL}
+                      className={styles.slackOrg}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Slack Organization
+                    </a>
+                    <a
+                      target="_blank"
+                      href={`mailto:${EMAIL}`}
+                      className={styles.email}
+                      rel="noopener noreferrer"
+                    >
+                      {EMAIL}
+                    </a>
+                  </Trans>
+                </p>
+                <SocialMedia />
+              </HomeSection>
+            </main>
+          )}
+        </I18n>
+        <Footer onClickLegal={this.toggleModal} />
+        <OverlayCookie onReadMore={this.toggleModal} />
+        {legal.show && <LegalModal page={legal.page} onClose={this.toggleModal} />}
+      </Fragment>
+    );
+  }
+>>>>>>> c1c298a3a39cc44a7c9e87c3afbfe15f7d4dde31
 }
 
-export default translate('translations')(Home);
+export default Home;

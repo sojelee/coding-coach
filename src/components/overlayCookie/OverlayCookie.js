@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
-import 'i18n/i18n';
+import { func } from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import styles from './overlayCookie.scss';
+import { Trans } from '@lingui/macro';
+import styles from './overlayCookie.module.scss';
+import Button from 'components/button/Button';
 
 class OverlayCookie extends Component {
   state = {
     cookiesAccepted: 'false',
+  };
+
+  static propTypes = {
+    onReadMore: func.isRequired,
   };
 
   acceptCookies = () => {
@@ -36,7 +41,7 @@ class OverlayCookie extends Component {
 
   render() {
     const { cookiesAccepted } = this.state;
-    const { t } = this.props;
+    const { onReadMore } = this.props;
 
     if (cookiesAccepted === true) return null;
 
@@ -44,10 +49,18 @@ class OverlayCookie extends Component {
       <section className={styles.cookieWrapper}>
         <div className={styles.cookieContent}>
           <p className={styles.cookieText}>
-            {t('cookie-notification') + ' '}
-            <span>
-              <a href="#cookies">{t('cookie-link')}</a>
-            </span>
+            <Trans id="legal.notification">
+              <span>
+                <Button
+                  size="small"
+                  type="tertiary"
+                  typography="capitalize"
+                  onClick={() => onReadMore('cookies')}
+                >
+                  Cookies Policy
+                </Button>
+              </span>
+            </Trans>
           </p>
           <p className={styles.cookieIcon}>
             <FontAwesomeIcon icon={faTimes} onClick={this.acceptCookies} />
@@ -58,4 +71,4 @@ class OverlayCookie extends Component {
   }
 }
 
-export default translate('translations')(OverlayCookie);
+export default OverlayCookie;
